@@ -6,7 +6,7 @@ public class QuizzerApp {
     void run(String[] args) {
         greeting();
 
-        User user = getUsername();
+        User user = getUsername(); // TODO: Update method name. It is confusing.
 
         getUserRole(user);
 
@@ -32,6 +32,7 @@ public class QuizzerApp {
     }
 
     private User getUserRole(User user) {
+        // TODO: Prettify string.
         System.out.println(user.getUsername() + " let's continue our journey. Work hard – play hard, they said. \n We" +
                 " " +
                 "have interviewers (who add questions and create tests) and students. What is your role? \n Please, " +
@@ -43,6 +44,7 @@ public class QuizzerApp {
         byte role = user.getRole();
         String nameOfRole;
 
+        // TODO: Update to ternary operator.
         if (role == 1) {
             nameOfRole = "Interviewer";
         } else {
