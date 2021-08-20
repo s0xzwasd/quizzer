@@ -1,12 +1,8 @@
 package com.s0xzwasd.quizzer;
 
 public class Quizzer {
-    void run(String[] args) {
-
-    }
-
     public static void main(String[] args) {
-        var app = new Quizzer();
+        var app = new QuizzerApp();
         app.run(args);
     }
 }
