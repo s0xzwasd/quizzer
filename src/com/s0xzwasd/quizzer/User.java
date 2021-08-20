@@ -2,6 +2,7 @@ package com.s0xzwasd.quizzer;
 
 public class User {
     private String username;
+    private String nameOfRole;
     private byte role;
 
     public byte getRole() {
@@ -10,6 +11,14 @@ public class User {
 
     public void setRole(byte role) {
         this.role = role;
+    }
+
+    public String getNameOfRole() {
+        return nameOfRole;
+    }
+
+    public void setNameOfRole(String nameOfRole) {
+        this.nameOfRole = nameOfRole;
     }
 
     public String getUsername() {
