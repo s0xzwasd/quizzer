@@ -8,7 +8,7 @@ public class Interviewer extends User {
         System.out.println("Please, wait a bit...");
 
         System.out.println("Successfully logged as " + user.getNameOfRole().toLowerCase() + "!");
-        System.out.println("Available commands: list, add, remove (TBD), exit");
+        System.out.println("Available commands: list (ls), add, remove (rm), exit");
 
         ArrayList<Question> questions = new ArrayList<>();
 
@@ -20,12 +20,12 @@ public class Interviewer extends User {
 
             switch (command) {
                 case "list":
+                case "ls":
                     // TODO: Refactor and move it to a different method.
                     if (!questions.isEmpty()) {
                         System.out.println("Questions and answers list:");
-
-                        for (Question q : questions) {
-                            System.out.println(q);
+                        for (int i = 0; i < questions.size(); i++) {
+                            System.out.println("Question #" + i + ": \n" + questions.get(i));
                         }
                     } else {
                         System.out.println("Currently the list of questions is empty.");
@@ -67,7 +67,27 @@ public class Interviewer extends User {
                     System.out.println("Question successfully added.");
                     break;
                 case "remove":
-                    System.out.println("Remove a question");
+                case "rm":
+                    // TODO: Add check for existing questions.
+                    System.out.println("You are entering removing mode. Please, specify an index of the question that" +
+                            " you want to delete:");
+
+                    for (int i = 0; i < questions.size(); i++) {
+                        System.out.println("Question #" + i + ": " + questions.get(i));
+                    }
+
+                    Scanner removeScan = new Scanner(System.in);
+                    int scanRemove = removeScan.nextInt();
+                    System.out.println("Are you sure that you want to delete the following question (y/n): " + questions.get(scanRemove).getQuestion());
+                    String confirmation = removeScan.next();
+
+                    switch (confirmation) {
+                        case "y":
+                            questions.remove(scanRemove);
+                            System.out.println("Question successfully removed.");
+                        case "n":
+                            System.out.println("You exit from removing mode.");
+                    }
                     break;
                 case "exit":
                     System.out.println("Exit from the program..");

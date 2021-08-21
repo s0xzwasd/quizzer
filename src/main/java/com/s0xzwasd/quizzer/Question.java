@@ -16,8 +16,12 @@ public class Question {
         }
     }
 
+    public String getQuestion() {
+        return this.question;
+    }
+
     @Override
     public String toString() {
-        return "Question: " + question + "\n Correct answer is " + correctAnswer + ".\n Other answers are: " + answerList.toString();
+        return question + "\n Correct answer is " + correctAnswer + ".\n Other answers are: " + answerList.toString();
     }
 }
