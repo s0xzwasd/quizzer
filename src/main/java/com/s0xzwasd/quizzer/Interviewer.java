@@ -6,24 +6,32 @@ public class Interviewer extends User {
     public void introduction(User user) {
         System.out.println("Please, wait a bit...");
 
-        Questions questions = new Questions();
-        questions.setQuestionsList("Who is the best in the world?");
-
         System.out.println("Successfully logged as " + user.getNameOfRole().toLowerCase() + "!");
-        System.out.println("Available commands: list, add, remove (TBD), update (TBD)");
+        System.out.println("Available commands: list, add, remove, exit");
 
-        Scanner ins = new Scanner(System.in);
-        String command = ins.next();
+        String command = "";
+        Scanner scanner = new Scanner(System.in);
 
-        switch (command) {
-            case "list":
-                System.out.println(questions.getQuestionsList());
-                break;
-            case "add":
-                questions.addQuestion(questions);
-                break;
-            default:
-                System.out.println("Please, enter only available commands");
-        }
+        do {
+            command = scanner.next();
+
+            switch (command) {
+                case "list":
+                    System.out.println("Questions and answers list");
+                    break;
+                case "add":
+                    System.out.println("Add a new question");
+                    break;
+                case "remove":
+                    System.out.println("Remove a question");
+                    break;
+                case "exit":
+                    System.out.println("Exit from the program..");
+                    break;
+                default:
+                    System.out.println("Invalid command: " + command + ". Please, try again.");
+                    break;
+            }
+        } while (!command.equals("exit"));
     }
 }
