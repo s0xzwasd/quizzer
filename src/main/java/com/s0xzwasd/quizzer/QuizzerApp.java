@@ -13,6 +13,9 @@ public class QuizzerApp {
         if (user.getRole() == 1) {
             Interviewer interviewer = new Interviewer();
             interviewer.introduction(user);
+        } else {
+            Student student = new Student();
+            student.introduction(user, user.questions);
         }
     }
 

@@ -5,12 +5,8 @@ import java.util.Scanner;
 
 public class Interviewer extends User {
     public void introduction(User user) {
-        System.out.println("Please, wait a bit...");
-
         System.out.println("Successfully logged as " + user.getNameOfRole().toLowerCase() + "!");
-        System.out.println("Available commands: list (ls), add, remove (rm), exit");
-
-        ArrayList<Question> questions = new ArrayList<>();
+        System.out.println("Available commands: list (ls), add, remove (rm), switch, exit");
 
         String command = "";
         Scanner scanner = new Scanner(System.in);
@@ -21,16 +17,7 @@ public class Interviewer extends User {
             switch (command) {
                 case "list":
                 case "ls":
-                    // TODO: Refactor and move it to a different method.
-                    if (!questions.isEmpty()) {
-                        System.out.println("Questions and answers list:");
-                        for (int i = 0; i < questions.size(); i++) {
-                            System.out.println("Question #" + i + ": \n" + questions.get(i));
-                        }
-                    } else {
-                        System.out.println("Currently the list of questions is empty.");
-                    }
-
+                    Question.showQuestions(questions);
                     break;
                 case "add":
                     // TODO: Refactor add move it to a different method.
@@ -55,7 +42,8 @@ public class Interviewer extends User {
                         answersCommand = scannerAC.nextLine();
 
                         if (answersCommand.equals("end")) {
-                            System.out.println("Back to the main menu. Available commands: list, add, remove, exit");
+                            System.out.println("Back to the main menu. Available commands: list (ls), add, remove " +
+                                    "(rm), switch, exit");
                         } else {
                             answers.add(answersCommand);
                             System.out.println("Answer is added successfully! Type end to close it.");
@@ -88,6 +76,12 @@ public class Interviewer extends User {
                         case "n":
                             System.out.println("You exit from removing mode.");
                     }
+                    break;
+                case "switch":
+                    user.setRole((byte) 0);
+                    user.setNameOfRole("Student");
+                    Student student = new Student();
+                    student.introduction(user, questions);
                     break;
                 case "exit":
                     System.out.println("Exit from the program..");
