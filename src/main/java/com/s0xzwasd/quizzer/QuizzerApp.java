@@ -6,18 +6,21 @@ public class QuizzerApp {
     void run(String[] args) {
         greeting();
 
-        User user = getUsername(); // TODO: Update method name. It is confusing.
+        User user = createUser();
 
         getUserRole(user);
 
-        System.out.println("User settings: " + user.getUsername() + " " + user.getRole());
+        if (user.getRole() == 1) {
+            Interviewer interviewer = new Interviewer();
+            interviewer.introduction(user);
+        }
     }
 
     void greeting() {
         System.out.println("Welcome on board! I'm Quizzer and I'm here to help you learn things with a rapid speed ;)");
     }
 
-    private User getUsername() {
+    private User createUser() {
         System.out.println("Please, enter your name to continue.");
 
         User user = new User();
@@ -42,39 +45,15 @@ public class QuizzerApp {
         user.setRole(ins.nextByte());
 
         byte role = user.getRole();
-        String nameOfRole;
 
-        // TODO: Update to ternary operator.
         if (role == 1) {
-            nameOfRole = "Interviewer";
+            user.setNameOfRole("Interviewer");
         } else {
-            nameOfRole = "Student";
+            user.setNameOfRole("Student");
         }
 
-        System.out.println("Great, I'm marking you as a " + nameOfRole + ".");
+        System.out.println("Great, I'm marking you as a " + user.getNameOfRole().toLowerCase() + ".");
 
         return user;
-    }
-}
-
-
-class User {
-    private String username;
-    private byte role;
-
-    public byte getRole() {
-        return role;
-    }
-
-    public void setRole(byte role) {
-        this.role = role;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }
