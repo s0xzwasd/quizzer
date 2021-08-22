@@ -3,7 +3,7 @@ package com.s0xzwasd.quizzer;
 import java.util.Scanner;
 
 public class QuizzerApp {
-    void run(String[] args) {
+    void run() {
         greeting();
 
         User user = createUser();
@@ -13,10 +13,13 @@ public class QuizzerApp {
         if (user.getRole() == 1) {
             Interviewer interviewer = new Interviewer();
             interviewer.introduction(user);
+        } else {
+            Student student = new Student();
+            student.introduction(user, user.questions);
         }
     }
 
-    void greeting() {
+    private void greeting() {
         System.out.println("Welcome on board! I'm Quizzer and I'm here to help you learn things with a rapid speed ;)");
     }
 

@@ -20,8 +20,28 @@ public class Question {
         return this.question;
     }
 
+    public String getCorrectAnswer() {
+        return this.correctAnswer;
+    }
+
+    public ArrayList<String> getAnswerList() {
+        this.answerList.add(correctAnswer);
+        return this.answerList;
+    }
+
     @Override
     public String toString() {
         return question + "\n Correct answer is " + correctAnswer + ".\n Other answers are: " + answerList.toString();
+    }
+
+    static void showQuestions(ArrayList<Question> questions) {
+        if (!questions.isEmpty()) {
+            System.out.println("Questions and answers list:");
+            for (int i = 0; i < questions.size(); i++) {
+                System.out.println("Question #" + i + ": \n" + questions.get(i));
+            }
+        } else {
+            System.out.println("Currently the list of questions is empty.");
+        }
     }
 }

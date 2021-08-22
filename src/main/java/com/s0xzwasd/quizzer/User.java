@@ -1,9 +1,13 @@
 package com.s0xzwasd.quizzer;
 
+import java.util.ArrayList;
+
 public class User {
     private String username;
     private String nameOfRole;
     private byte role;
+
+    ArrayList<Question> questions = new ArrayList<>();
 
     public byte getRole() {
         return role;
