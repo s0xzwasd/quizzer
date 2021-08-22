@@ -20,6 +20,15 @@ public class Question {
         return this.question;
     }
 
+    public String getCorrectAnswer() {
+        return this.correctAnswer;
+    }
+
+    public ArrayList<String> getAnswerList() {
+        this.answerList.add(correctAnswer);
+        return this.answerList;
+    }
+
     @Override
     public String toString() {
         return question + "\n Correct answer is " + correctAnswer + ".\n Other answers are: " + answerList.toString();
