@@ -81,7 +81,7 @@ public class Interviewer extends User {
                     user.setRole((byte) 0);
                     user.setNameOfRole("Student");
                     Student student = new Student();
-                    student.introduction(user, questions);
+                    student.studentScanner(user, questions);
                     break;
                 case "exit":
                     System.out.println("Exit from the program..");
