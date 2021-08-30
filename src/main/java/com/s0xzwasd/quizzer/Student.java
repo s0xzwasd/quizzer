@@ -16,27 +16,32 @@ public class Student extends User {
 
             switch (command) {
                 case "start":
-                    // TODO: Move it to a different method.
-                    int score = 0;
+                    if (questions.size() > 0) {
+                        // TODO: Move it to a different method.
+                        int score = 0;
 
-                    System.out.println("Start quiz!");
+                        System.out.println("Start quiz!");
 
-                    for (Question question : questions) {
-                        System.out.println("\t" + question.getQuestion());
-                        System.out.println("\t\tOptions: " + question.getAnswerList());
+                        for (Question question : questions) {
+                            System.out.println("\t" + question.getQuestion());
+                            System.out.println("\t\tOptions: " + question.getAnswerList());
 
-                        Scanner answerScanner = new Scanner(System.in);
+                            Scanner answerScanner = new Scanner(System.in);
 
-                        if (answerScanner.nextLine().equals(question.getCorrectAnswer())) {
-                            score += 1;
+                            if (answerScanner.nextLine().equals(question.getCorrectAnswer())) {
+                                score += 1;
 
-                            System.out.println(question.getCorrectAnswer() + " is a correct answer. Congrats!");
-                        } else {
-                            System.out.println("The answer is not correct.");
+                                System.out.println(question.getCorrectAnswer() + " is a correct answer. Congrats!");
+                            } else {
+                                System.out.println("The answer is not correct.");
+                            }
                         }
-                    }
 
-                    System.out.println("The quiz is ended. Your score is " + score + ".");
+                        System.out.println("The quiz is ended. Your score is " + score + ".");
+                    } else {
+                        System.out.println("There is no questions to start the quiz.");
+                    }
+                    break;
                 case "list":
                 case "ls":
                     // TODO: Add cases for 0 or 1 question.
