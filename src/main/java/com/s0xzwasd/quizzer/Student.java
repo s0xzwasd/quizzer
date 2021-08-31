@@ -14,7 +14,9 @@ public class Student extends User {
         do {
             command = scanner.next();
             switch (command) {
-                case "start" -> startQuiz(questions);
+                case "start" -> {
+                    startQuiz(questions);
+                }
                 case "list", "ls" -> displayListOfQuestions(questions);
                 default -> System.out.println("Command is not recognized. Please, try again.");
             }
@@ -22,6 +24,8 @@ public class Student extends User {
     }
 
     private void startQuiz(ArrayList<Question> questions) {
+        Scanner answerScanner = new Scanner(System.in);
+
         if (questions.size() > 0) {
             int score = 0;
 
@@ -31,14 +35,29 @@ public class Student extends User {
                 System.out.println("\t" + question.getQuestion());
                 System.out.println("\t\tOptions: " + question.getAnswerList());
 
-                Scanner answerScanner = new Scanner(System.in);
+                // Skipped questions queue
+                ArrayList<Question> skippedQuestions = new ArrayList<>();
 
-                if (answerScanner.nextLine().equals(question.getCorrectAnswer())) {
+                if (answerScanner.hasNextLine() && answerScanner.nextLine().equals(question.getCorrectAnswer())) {
                     score += 1;
-
                     System.out.println(question.getCorrectAnswer() + " is a correct answer. Congrats!");
+                } else if (answerScanner.hasNextLine() && answerScanner.nextLine().equals("skip")) {
+                    skippedQuestions.add(question);
+                    System.out.println("The question is skipped. You can answer on it later.");
                 } else {
                     System.out.println("The answer is not correct.");
+                }
+
+                for (Question skippedQuestion : skippedQuestions) {
+                    System.out.println("\t" + skippedQuestion.getQuestion());
+                    System.out.println("\t\tOptions: " + skippedQuestion.getAnswerList());
+
+                    if (answerScanner.nextLine().equals(skippedQuestion.getCorrectAnswer())) {
+                        score += 1;
+                        System.out.println(skippedQuestion.getCorrectAnswer() + " is a correct answer. Congrats!");
+                    } else {
+                        System.out.println("The answer is not correct.");
+                    }
                 }
             }
 
@@ -46,6 +65,8 @@ public class Student extends User {
         } else {
             System.out.println("There are no questions to start the quiz.");
         }
+
+        answerScanner.close();
     }
 
     private void displayListOfQuestions(ArrayList<Question> questions) {
