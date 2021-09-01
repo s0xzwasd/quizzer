@@ -15,7 +15,7 @@ public class QuizzerApp {
             interviewer.introduction(user);
         } else {
             Student student = new Student();
-            student.introduction(user, user.questions);
+            student.studentScanner(user, user.questions);
         }
     }
 

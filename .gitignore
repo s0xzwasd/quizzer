@@ -4,6 +4,7 @@
 
 # User-specific stuff
 .idea/
+src/main/java/META-INF/*
 quizzer.iml
 
 # CMake
